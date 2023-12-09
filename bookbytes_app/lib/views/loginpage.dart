@@ -151,15 +151,7 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  // User user = User(
-  //     userid: data['data']['userid'],
-  //     useremail: data['data']['useremail'],
-  //     username: data['data']['username'],
-  //     userdatereg: data['data']['userdatereg'],
-  //     userpassword: data['data']['userpassword']);
-  // print(user.username);
-  // print(user.useremail);
-  // print(user.userid);
+
 
   void saveremovepref(bool value) async {
     String email = _emailditingController.text;
