@@ -8,6 +8,7 @@ import 'package:bookbytes_app/shared/myserverconfig.dart';
 import 'package:bookbytes_app/views/newbookpage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class MainPage extends StatefulWidget {
   final User userdata;
@@ -38,16 +39,18 @@ class _MainPageState extends State<MainPage> {
       axiscount = 2;
     }
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar( 
           iconTheme: const IconThemeData(color: Colors.black),
           title: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //CircleAvatar(backgroundImage: AssetImage('')),
-              Text(
-                "Book List",
-                style: TextStyle(
-                  color: Colors.black,
+              Center(
+                child: Text(
+                  "BookBytes",
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
               ),
               SizedBox(
@@ -55,7 +58,7 @@ class _MainPageState extends State<MainPage> {
               ),
             ],
           ),
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.yellow,
           elevation: 0.0,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(1.0),
@@ -69,7 +72,46 @@ class _MainPageState extends State<MainPage> {
         userdata: widget.userdata,
       ),
       body: bookList.isEmpty
-          ? const Center(child: Text("No Data"))
+          ? 
+          Container(
+            decoration: BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [Colors.yellow.shade100, Colors.yellow.shade300],
+    ),),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0,0,10,5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/images/welcome.png"),
+                    Container(
+                      child: const Center(child: Text("Hi, Welcome!", style: TextStyle(fontSize:19, color: Colors.blue, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),)
+                      ),
+                    ),
+                      Padding(
+                        padding: const EdgeInsets.all(17.0),
+                        child: Container(
+                          child: const Center(
+                            child: Text(
+                              "Unfortunately, this page is under development. Stay tuned!",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.red,
+                                  fontStyle: FontStyle.italic),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ),
+                      LoadingAnimationWidget.prograssiveDots(color: Colors.pink, size: 45),
+                  ],
+                ),
+              ),
+            ),
+          )
           : Column(
               children: [
                 Expanded(
@@ -115,10 +157,10 @@ class _MainPageState extends State<MainPage> {
                 )
               ],
             ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: newBook,
-        child: const Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: newBook,
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 

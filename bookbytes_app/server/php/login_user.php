@@ -1,9 +1,11 @@
 <?php
+//NO 7
 if (!isset($_POST)) {
     $response = array('status' => 'failed', 'data' => null);
     sendJsonResponse($response);
     die();
 }
+//sampai sini
 include_once("dbconnect.php");
 
 $email = $_POST['email'];

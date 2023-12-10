@@ -28,9 +28,9 @@ class _ProfilePageState extends State<ProfilePage> {
             title: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //CircleAvatar(backgroundImage: AssetImage('')),
+                
                 Text(
-                  "My Account",
+                  "Account",
                   style: TextStyle(
                     color: Colors.black,
                   ),
@@ -40,7 +40,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.yellow,
             elevation: 0.0,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(1.0),
@@ -49,119 +49,184 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 1.0,
               ),
             )),
+
+
         drawer: MyDrawer(
           page: 'account',
           userdata: widget.userdata,
         ),
-        body: Center(
-          child: Column(children: [
-            Container(
-              height: screenHeight * 0.25,
-              padding: const EdgeInsets.all(4),
-              child: Card(
-                  child: Row(children: [
-                Container(
-                  padding: EdgeInsets.all(8),
-                  width: screenWidth * 0.4,
-                  height: screenHeight * 0.4,
-                  child: Image.asset(
-                    'assets/images/profile.png',
-                    fit: BoxFit.contain,
+
+
+
+        body: 
+        Container(decoration: BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [Colors.yellow.shade100, Colors.yellow.shade300],
+    ),),
+          child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 25.0),
+              Container(
+                child: Center(
+                  child: CircleAvatar(
+                    radius: 50.0,
+                    backgroundImage: AssetImage('assets/images/profile_pic.png'),
+                    backgroundColor: Colors.amber,
                   ),
                 ),
-                Expanded(
-                    flex: 7,
-                    child: Column(
-                      children: [
-                        Text(
-                          widget.userdata.username.toString(),
-                          style: const TextStyle(fontSize: 24),
-                        ),
-                        const Divider(
-                          color: Colors.blueGrey,
-                        )
-                      ],
-                    ))
-              ])),
-            ),
-            Container(
-              height: screenHeight * 0.035,
-              alignment: Alignment.center,
-              color: Colors.blue,
-              width: screenWidth,
-              child: const Text("UPDATE ACCOUNT",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold)),
-            ),
-            // const Divider(
-            //   color: Colors.blueGrey,
-            // ),
-            Expanded(
-                child: ListView(
-                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                    shrinkWrap: true,
-                    children: [
-                  MaterialButton(
-                    onPressed: () {},
-                    child: const Text("UPDATE NAME"),
-                  ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  MaterialButton(
-                    onPressed: () {},
-                    child: const Text("UPDATE PASSWORD"),
-                  ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  MaterialButton(
-                    onPressed: () {},
-                    child: const Text("UPDATE PHONE NUMBER"),
-                  ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  MaterialButton(
-                    onPressed: () {},
-                    child: const Text("UPDATE ADDRESS"),
-                  ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (content) => const RegistrationPage()));
-                    },
-                    child: const Text("NEW REGISTRATION"),
-                  ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (content) => const LoginPage()));
-                    },
-                    child: const Text("LOGIN"),
-                  ),
-                  const Divider(
-                    height: 2,
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      {}
-                    },
-                    child: const Text("LOGOUT"),
-                  ),
-                ])),
-          ]),
-        ));
+              ),
+        
+              SizedBox(height: 60.0),
+              Row(
+                children: [
+                  SizedBox(width: 28,),
+                  Container(
+                    child: 
+                  Text('PROFILE', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),textAlign: TextAlign.left,),),
+                ],
+              ),
+        
+        
+        
+        
+              
+              SizedBox(height: 17.0),
+              Row(
+                children: [
+                  SizedBox(width: 30.0),
+                  Icon(Icons.email, color: Colors.pink,),
+                  SizedBox(width: 16.0),
+                  Text('Email: ${widget.userdata.useremail}'),
+                ],
+              ),
+              SizedBox(height: 8.0),
+              
+              Row(
+                children: [
+                  SizedBox(width: 30.0),
+                  Icon(Icons.person, color: Colors.pink,),
+                  SizedBox(width: 16.0),
+                  Text('Name: ${widget.userdata.username}'),
+                ],
+              ),
+              SizedBox(height: 8.0),
+        
+              Row(
+                children: [
+                  SizedBox(width: 30.0),
+                  Icon(Icons.password, color: Colors.pink,),
+                  SizedBox(width: 16.0),
+                  Text('Password: ${widget.userdata.username}'),
+                ],
+              ),
+              
+              SizedBox(height: 30.0),
+              Row(
+                children: [
+                  SizedBox(width: 28,),
+                  Container(
+                    child: 
+                  Text('REGISTRATION DETAILS', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),textAlign: TextAlign.left,),),
+                ],
+              ),
+        
+              SizedBox(height: 17.0),
+              Row(
+                children: [
+                  SizedBox(width: 30.0),
+                  Icon(Icons.date_range, color: Colors.pink,),
+                  SizedBox(width: 16.0),
+                  Text('Date: ${widget.userdata.userdatereg}'),
+                ],
+              ),
+              SizedBox(height: 8.0),
+        
+              SizedBox(height: 17.0),
+              Row(
+                children: [
+                  SizedBox(width: 30.0),
+                  Icon(Icons.payment, color: Colors.pink,),
+                  SizedBox(width: 16.0),
+                  Text('ID: ${widget.userdata.userid}'),
+                ],
+              ),
+              SizedBox(height: 10.0),
+        
+        
+        
+        
+        
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (content) => const LoginPage()));
+                      },
+                      child: Text(
+                        'Log In',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.yellow, // Button color
+                      ),
+                    ),
+        
+                    SizedBox(width: 50.0),
+        
+                    ElevatedButton(
+                      onPressed: () {
+                         Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (content) => const RegistrationPage()));
+                      },
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.yellow, // Button color
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 8.0),
+        
+              Container(
+                child: Text('Old pal? Hit login. \nNewcomer? Sign up and let’s make it official!', style: TextStyle(fontSize: 11.5, color: Colors.pink, ), textAlign: TextAlign.center,)
+                ,
+              ),
+              
+              
+            ],
+          ),
+              ),
+        ),
+    );
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
-}
+
+  }

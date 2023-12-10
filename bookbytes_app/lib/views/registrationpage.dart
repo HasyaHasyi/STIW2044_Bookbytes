@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:bookbytes_app/models/user.dart';
 import 'package:bookbytes_app/shared/myserverconfig.dart';
 import 'package:bookbytes_app/views/loginpage.dart';
+import 'package:bookbytes_app/views/profilepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -25,94 +27,123 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Registration Form")),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(children: [
-              Image.asset("assets/images/register.jpg"),
-              Container(
-                padding: const EdgeInsets.all(16),
-                child: Form(
-                  key: _formKey,
-                  child: Card(
-                    elevation: 10,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
-                      child: Column(children: [
-                        const Text(
-                          "User Registration",
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold),
-                        ),
-                        TextFormField(
-                          controller: _nameEditingController,
-                          keyboardType: TextInputType.text,
-                          decoration: const InputDecoration(
-                            labelText: 'Name',
-                            icon: Icon(Icons.person),
+        appBar: AppBar(backgroundColor: Colors.yellow,title: const Text("Registration", style: TextStyle(color: Colors.black),),
+        leading: IconButton(color: Colors.black,
+    icon: Icon(Icons.arrow_back),
+    onPressed: () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ProfilePage(userdata: User()), 
+      ));
+    },
+  ),),
+        body: 
+        Container(
+           height: double.infinity,
+          decoration: BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [Colors.yellow.shade100, Colors.yellow.shade300],
+    ),),
+
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(children: [
+                Image.asset("assets/images/regist.png", width: 200,),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Form(
+                    key: _formKey,
+                    child: Card(
+                      elevation: 10,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+                        child: Column(children: [
+                          const Text(
+                            "User Registration",
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold),
                           ),
-                          validator: (val) => val!.isEmpty || (val.length < 3)
-                              ? "name must be longer than 3"
-                              : null,
-                        ),
-                        TextFormField(
-                          controller: _emailditingController,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: const InputDecoration(
-                            labelText: 'Email',
-                            icon: Icon(Icons.email),
-                          ),
-                          validator: (val) => val!.isEmpty ||
-                                  !val.contains("@") ||
-                                  !val.contains(".")
-                              ? "enter a valid email"
-                              : null,
-                        ),
-                        TextFormField(
-                          controller: _passEditingController,
-                          keyboardType: TextInputType.text,
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                            labelText: 'Password',
-                            icon: Icon(Icons.lock),
-                          ),
-                          validator: (val) => validatePassword(val.toString()),
-                        ),
-                        TextFormField(
-                          controller: _pass2EditingController,
-                          keyboardType: TextInputType.text,
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                            labelText: 'Re-enter Password',
-                            icon: Icon(Icons.lock),
-                          ),
-                          validator: (val) => validatePassword(val.toString()),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Checkbox(
-                              value: _isChecked,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  _isChecked = value!;
-                                });
-                              },
+                          TextFormField(
+                            controller: _nameEditingController,
+                            keyboardType: TextInputType.text,
+                            decoration: const InputDecoration(
+                              labelText: 'Name',
+                              icon: Icon(Icons.person),
                             ),
-                            GestureDetector(
-                                onTap: _showEULA,
-                                child: const Text("Agree with terms?")),
-                            ElevatedButton(
-                                onPressed: _registerUserDialog,
-                                child: const Text("Register"))
-                          ],
-                        )
-                      ]),
+                          
+                            validator: (val) => val!.isEmpty || (val.length < 3)
+                                ? "Please input name longer than 3"
+                                : null,
+                          ),
+                          TextFormField(
+                            controller: _emailditingController,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: const InputDecoration(
+                              labelText: 'Email',
+                              icon: Icon(Icons.email),
+                            ),
+                            validator: (val) => val!.isEmpty ||
+                                    !val.contains("@") ||
+                                    !val.contains(".")
+                                ? "Use Valid Email"
+                                : null,
+                          ),
+                          TextFormField(
+                            controller: _passEditingController,
+                            keyboardType: TextInputType.text,
+                            obscureText: true,
+                            decoration: const InputDecoration(
+                              labelText: 'Password',
+                              icon: Icon(Icons.lock),
+                            ),
+                            validator: (val) => validatePassword(val.toString()),
+                          ),
+                          TextFormField(
+                            controller: _pass2EditingController,
+                            keyboardType: TextInputType.text,
+                            obscureText: true,
+                            decoration: const InputDecoration(
+                              labelText: 'Re-enter Password',
+                              icon: Icon(Icons.lock),
+                            ),
+                            validator: (val) => validatePassword(val.toString()),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Checkbox(
+                                value: _isChecked,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    _isChecked = value!;
+                                  });
+                                },
+                              ),
+                              GestureDetector(
+                                  onTap: _showEULA,
+                                  child: const Text("Agree with terms?")),
+                              ElevatedButton(
+                              onPressed: _registerUserDialog,
+                              child: const Text(
+    "Register",
+    style: TextStyle(color: Colors.black),
+  ),
+  style: ElevatedButton.styleFrom(
+    primary: Colors.yellow, // Button color
+  ),
+)
+                            ],
+                          )
+                        ]),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ]),
+              ]),
+            ),
           ),
         ));
   }
@@ -254,6 +285,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           "email": _email,
           "password": _pass
         }).then((response) {
+   
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
         print(data);

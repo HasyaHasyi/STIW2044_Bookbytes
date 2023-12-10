@@ -12,10 +12,12 @@ ini_set('display_errors', '1');
 $name = $_POST['name'];
 $email = $_POST['email'];
 $password = sha1($_POST['password']);
+//NO PHP 3
 $sqlregister ="INSERT INTO `tbl_users`(`user_email`, `user_name`, `user_password`)
 VALUES ('$email','$name','$password')";
 
 if ($conn->query($sqlregister) === TRUE) {
+    //SAMPE SINI AJA KARENA UDH EXECUTE
     $response = array('status' => 'success', 'data' => null);
            sendJsonResponse($response);
     }else{

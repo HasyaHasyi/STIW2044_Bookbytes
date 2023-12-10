@@ -5,12 +5,14 @@ class User {
   String? userpassword;
   String? userdatereg;
 
+
   User(
       {this.userid,
       this.useremail,
       this.username,
       this.userpassword,
       this.userdatereg});
+  
 
   User.fromJson(Map<String, dynamic> json) {
     userid = json['userid'];

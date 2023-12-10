@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../models/user.dart';
 import 'mainpage.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -37,18 +38,36 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(
-            "BookBytes",
-            style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-          ),
-          CircularProgressIndicator(),
-          Text("Version 0.1")
-        ],
+    return Scaffold(
+      body: 
+      Center(
+          child: Container(
+        decoration: BoxDecoration(color: Colors.yellow),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10,90,10,0),
+              child: Center(child: Image.asset("assets/images/logo.png")),
+            ),
+            Text(
+              "BookBytes",
+              style: TextStyle(
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.pink),
+            ),
+            Text(
+              "Solution to Knowledge",
+              style: TextStyle(
+                  fontSize: 20,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.pink),
+            ),
+            LoadingAnimationWidget.newtonCradle(color: Colors.pink, size: 200),
+            Text("Version 0.1")
+          ],
+        ),
       )),
     );
   }

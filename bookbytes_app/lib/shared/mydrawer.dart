@@ -10,7 +10,7 @@ import 'EnterExitRoute.dart';
 class MyDrawer extends StatefulWidget {
   final String page;
   final User userdata;
-  
+
   const MyDrawer({Key? key, required this.page, required this.userdata})
       : super(key: key);
 
@@ -28,24 +28,29 @@ class _MyDrawerState extends State<MyDrawer> {
         children: [
           UserAccountsDrawerHeader(
             decoration: const BoxDecoration(
-              color: Colors.blue,
+              color: Colors.yellow,
             ),
             currentAccountPicture: const CircleAvatar(
-                foregroundImage: AssetImage('assets/images/profile.png'),
-                backgroundColor: Colors.white),
-            accountName: Text(widget.userdata.username.toString()),
+                foregroundImage: AssetImage('assets/images/profile_pic.png'),
+                backgroundColor: Colors.pinkAccent),
+            accountName: Text(widget.userdata.username.toString(), style: TextStyle(color: Colors.black),),
             accountEmail: Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(widget.userdata.useremail.toString()),
-                    Text("RM100")
+                    Text(style: TextStyle(color: Colors.black),widget.userdata.useremail.toString()),
+                    Text(
+                      "RM 0 ",
+                      style: TextStyle(color: Colors.black),
+                    )
                   ]),
             ),
           ),
+
+          
           ListTile(
-            leading: const Icon(Icons.money),
+            leading: const Icon(Icons.money, color: Colors.pink,),
             title: const Text('Books'),
             onTap: () {
               Navigator.pop(context);
@@ -69,8 +74,8 @@ class _MyDrawerState extends State<MyDrawer> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.sell),
-            title: const Text('Orders and Sales'),
+            leading: const Icon(Icons.sell,color: Colors.pink,),
+            title: const Text('Order Books'),
             onTap: () {
               Navigator.pop(context);
               print(widget.page.toString());
@@ -94,7 +99,7 @@ class _MyDrawerState extends State<MyDrawer> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.people),
+            leading: const Icon(Icons.people,color: Colors.pink,),
             title: const Text('Community'),
             onTap: () {
               print(widget.page.toString());
@@ -115,7 +120,7 @@ class _MyDrawerState extends State<MyDrawer> {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.verified_user),
+            leading: const Icon(Icons.verified_user,color: Colors.pink,),
             title: const Text('My Account'),
             onTap: () {
               print(widget.page.toString());
@@ -139,7 +144,7 @@ class _MyDrawerState extends State<MyDrawer> {
             color: Colors.blueGrey,
           ),
           ListTile(
-            leading: const Icon(Icons.settings),
+            leading: const Icon(Icons.settings, color: Colors.pink,),
             title: const Text('Settings'),
             onTap: () {
               Navigator.pop(context);
