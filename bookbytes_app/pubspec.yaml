@@ -43,6 +43,8 @@ dependencies:
   image_cropper: ^4.0.1
   permission_handler: ^11.0.1
   loading_animation_widget: ^1.2.0+4
+  liquid_pull_to_refresh: ^3.0.1
+  
 
 
 dev_dependencies:
