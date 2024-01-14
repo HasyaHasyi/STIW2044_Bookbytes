@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 
 if (!isset($_POST['buyer_id'])) {
     $response = array('status' => 'failed', 'data' => null);
