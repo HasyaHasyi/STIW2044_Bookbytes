@@ -1,6 +1,7 @@
 class Book {
   String? bookId;
   String? userId;
+  String? sellerId;
   String? bookIsbn;
   String? bookTitle;
   String? bookDesc;
@@ -23,6 +24,7 @@ class Book {
   Book.fromJson(Map<String, dynamic> json) {
     bookId = json['book_id'];
     userId = json['user_id'];
+    sellerId = json['seller_id'];
     bookIsbn = json['book_isbn'];
     bookTitle = json['book_title'];
     bookDesc = json['book_desc'];
@@ -36,6 +38,7 @@ class Book {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['book_id'] = bookId;
     data['user_id'] = userId;
+    data['seller_id'] = sellerId;
     data['book_isbn'] = bookIsbn;
     data['book_title'] = bookTitle;
     data['book_desc'] = bookDesc;

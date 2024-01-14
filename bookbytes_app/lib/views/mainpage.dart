@@ -6,6 +6,7 @@ import 'package:bookbytes_app/models/user.dart';
 import 'package:bookbytes_app/shared/mydrawer.dart';
 import 'package:bookbytes_app/shared/myserverconfig.dart';
 import 'package:bookbytes_app/views/bookDetails.dart';
+import 'package:bookbytes_app/views/cartpage.dart';
 import 'package:bookbytes_app/views/newbookpage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -76,7 +77,24 @@ class _MainPageState extends State<MainPage> {
               color: Colors.grey,
               height: 1.0,
             ),
-          )),
+          ),
+          actions: [
+      // Add a cart icon here
+      IconButton(
+        onPressed: () {
+          Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CartPage(user: widget.userdata),
+      ),
+    );
+        },
+        icon: Icon(Icons.shopping_cart),
+        iconSize: 30,
+        color: Colors.black,
+      ),
+    ],
+          ),
       drawer: MyDrawer(
         page: "books",
         userdata: widget.userdata,
@@ -92,7 +110,7 @@ class _MainPageState extends State<MainPage> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.yellow.shade100, Colors.yellow.shade300],
+                  colors: [Colors.yellow, Colors.yellow.shade300],
                 ),),
               child: Center(
                 child: Padding(
