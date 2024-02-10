@@ -5,6 +5,7 @@ import 'package:bookbytes_app/models/user.dart';
 import 'package:bookbytes_app/models/cart.dart';
 // import 'package:bookbytes_app/view/billpage.dart';
 import 'package:bookbytes_app/shared/myserverconfig.dart';
+import 'package:bookbytes_app/views/billpage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 // import '../models/util/myservercofig.dart';
@@ -32,7 +33,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(elevation: 0,
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.yellow,
         title: Text("My Cart"),
         centerTitle: true),
       body: cartList.isEmpty
@@ -68,7 +69,7 @@ class _CartPageState extends State<CartPage> {
                             title: Text(cartList[index].bookTitle.toString()),
                             onTap: () async {},
                             subtitle: Text("RM ${cartList[index].bookPrice}"),
-                            leading: const Icon(Icons.sell),
+                            leading: Icon(Icons.book, size: 30, color: Colors.pink),
                             trailing:Text("${cartList[index].cartQty} unit")),
                       );
                     }),
@@ -84,7 +85,25 @@ class _CartPageState extends State<CartPage> {
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       ElevatedButton(
-                          onPressed: () {}, child: const Text("Pay Now"))
+                          onPressed: () 
+                            async {
+                            await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (content) => BillScreen(
+                                          user: widget.user,
+                                          totalprice: total,
+                                        )));
+                            loadUserCart();
+                            }, 
+                            child: const Text(
+                              "Pay Now",
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.pink, // Set the button color to green
+                            ), 
+                          )
                     ],
                   ))
             ]),
@@ -92,7 +111,7 @@ class _CartPageState extends State<CartPage> {
   }
 
   void loadUserCart() {
-    String userid = "1";
+    String userid = '1';
     http
         .get(
       Uri.parse(

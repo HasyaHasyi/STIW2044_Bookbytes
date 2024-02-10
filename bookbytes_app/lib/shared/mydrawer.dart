@@ -1,4 +1,5 @@
 import 'package:bookbytes_app/views/communitypage.dart';
+import 'package:bookbytes_app/views/editpage.dart';
 import 'package:flutter/material.dart';
 
 import '../models/user.dart';
@@ -23,16 +24,25 @@ class _MyDrawerState extends State<MyDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
             decoration: const BoxDecoration(
               color: Colors.yellow,
             ),
-            currentAccountPicture: const CircleAvatar(
-                foregroundImage: AssetImage('assets/images/profile_pic.png'),
-                backgroundColor: Colors.pinkAccent),
+            currentAccountPicture:InkWell(
+              onTap: () => {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (content) => ProfilePage(
+                              userdata: widget.userdata,
+                            )))
+              },
+              child: const CircleAvatar(
+                  foregroundImage: AssetImage('assets/images/profile_pic.png'),
+                  backgroundColor: Colors.pinkAccent),
+            ),
             accountName: Text(widget.userdata.username.toString(), style: TextStyle(color: Colors.black),),
             accountEmail: Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
@@ -40,10 +50,6 @@ class _MyDrawerState extends State<MyDrawer> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(style: TextStyle(color: Colors.black),widget.userdata.useremail.toString()),
-                    Text(
-                      "RM 0 ",
-                      style: TextStyle(color: Colors.black),
-                    )
                   ]),
             ),
           ),
@@ -148,6 +154,10 @@ class _MyDrawerState extends State<MyDrawer> {
             title: const Text('Settings'),
             onTap: () {
               Navigator.pop(context);
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (content) => SettingsPage()));
             },
           ),
         ],

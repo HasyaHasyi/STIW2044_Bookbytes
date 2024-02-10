@@ -1,11 +1,9 @@
 <?php
-//NO 7
 if (!isset($_POST)) {
     $response = array('status' => 'failed', 'data' => null);
     sendJsonResponse($response);
     die();
 }
-//sampai sini
 include_once("dbconnect.php");
 
 $email = $_POST['email'];
@@ -20,6 +18,7 @@ if ($result->num_rows > 0) {
         'id' => $row['user_id'],
         'name' => $row['user_name'],
         'email' => $row['user_email'],
+        'date' => $row['user_datereg'],
     );
 
     $response = array('status' => 'success', 'data' => $userlist);

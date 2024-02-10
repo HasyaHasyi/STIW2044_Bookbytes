@@ -20,6 +20,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final TextEditingController _emailditingController = TextEditingController();
   final TextEditingController _passEditingController = TextEditingController();
   final TextEditingController _pass2EditingController = TextEditingController();
+  final TextEditingController _phoneEditingController = TextEditingController();
+  final TextEditingController _addrEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String eula = "";
   bool _isChecked = false;
@@ -51,7 +53,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           child: SingleChildScrollView(
             child: Center(
               child: Column(children: [
-                Image.asset("assets/images/regist.png", width: 200,),
+                Image.asset("assets/images/regist.png", width: 110,),
                 Container(
                   padding: const EdgeInsets.all(16),
                   child: Form(
@@ -78,6 +80,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ? "Please input name longer than 3"
                                 : null,
                           ),
+                           TextFormField(
+                          controller: _phoneEditingController,
+                          keyboardType: TextInputType.phone,
+                          decoration: const InputDecoration(
+                            labelText: 'Phone',
+                            icon: Icon(Icons.phone),
+                          ),
+                          validator: (val) => val!.isEmpty || (val.length < 3)
+                              ? "Phone must be longer than 10"
+                              : null,
+                        ),
                           TextFormField(
                             controller: _emailditingController,
                             keyboardType: TextInputType.emailAddress,
@@ -111,6 +124,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ),
                             validator: (val) => validatePassword(val.toString()),
                           ),
+                          TextFormField(
+                          controller: _addrEditingController,
+                          maxLines: 4,
+                          decoration: InputDecoration(
+                            labelText: 'Address',
+                            icon: const Icon(Icons.gps_fixed),
+                          ),
+                          validator: (val) => val!.isEmpty || (val.length < 3)
+                              ? "Address must be longer than 10"
+                              : null,
+                        ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -127,14 +151,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   child: const Text("Agree with terms?")),
                               ElevatedButton(
                               onPressed: _registerUserDialog,
-                              child: const Text(
-    "Register",
-    style: TextStyle(color: Colors.black),
-  ),
-  style: ElevatedButton.styleFrom(
-    primary: Colors.yellow, // Button color
-  ),
-)
+                              child: const Text("Register",
+                              style: TextStyle(color: Colors.black),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.yellow, // Button color
+                              ),
+                            ),
                             ],
                           )
                         ]),
@@ -277,13 +300,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
     String _name = _nameEditingController.text;
     String _email = _emailditingController.text;
     String _pass = _passEditingController.text;
+    String phone = _phoneEditingController.text;
+    String address = _addrEditingController.text;
 
     http.post(
         Uri.parse("${MyServerConfig.server}/bookbyte/php/register_user.php"),
         body: {
           "name": _name,
           "email": _email,
-          "password": _pass
+          "password": _pass,
+          "phone": phone,
+          "address": address
         }).then((response) {
    
       if (response.statusCode == 200) {

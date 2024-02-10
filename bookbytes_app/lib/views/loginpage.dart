@@ -162,6 +162,8 @@ class _LoginPageState extends State<LoginPage> {
             content: Text("Login Success"),
             backgroundColor: Colors.green,
           ));
+          setState(() {});
+          print(user.useremail);
           Navigator.push(context,
               MaterialPageRoute(builder: (content) =>  MainPage(userdata:user)));
         } else {

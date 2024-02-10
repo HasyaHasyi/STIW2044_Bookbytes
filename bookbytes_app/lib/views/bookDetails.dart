@@ -205,6 +205,7 @@ class _BookDetailsState extends State<BookDetails> {
         "buyer_id": "1",
         "seller_id": widget.book.sellerId.toString(),
         "book_id": widget.book.bookId.toString(),
+        "book_price": widget.book.bookPrice.toString(),
       },
     ).then((response) {
       print(response.body);

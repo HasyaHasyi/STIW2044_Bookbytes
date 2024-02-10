@@ -4,6 +4,9 @@ class User {
   String? username;
   String? userpassword;
   String? userdatereg;
+  String? useraddress;
+  String? userphone;
+
 
 
   User(
@@ -11,15 +14,19 @@ class User {
       this.useremail,
       this.username,
       this.userpassword,
-      this.userdatereg});
+      this.userdatereg,
+      this.useraddress,
+      this.userphone,});
   
 
   User.fromJson(Map<String, dynamic> json) {
-    userid = json['userid'];
-    useremail = json['useremail'];
-    username = json['username'];
+    userid = json['id'];
+    useremail = json['email'];
+    username = json['name'];
     userpassword = json['userpassword'];
-    userdatereg = json['userdatereg'];
+    userdatereg = json['date'];
+    userphone = json['userphone'];
+    useraddress = json['useraddress'];
   }
 
   Map<String, dynamic> toJson() {
@@ -29,6 +36,8 @@ class User {
     data['username'] = username;
     data['userpassword'] = userpassword;
     data['userdatereg'] = userdatereg;
+    data['useraddress'] = useraddress;
+    data['userphone'] = userphone;
     return data;
   }
 }
