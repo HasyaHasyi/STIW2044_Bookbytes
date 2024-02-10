@@ -24,46 +24,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_users`
+-- Table structure for table `tbl_orders`
 --
 
-CREATE TABLE `tbl_users` (
-  `user_id` int(4) NOT NULL,
-  `user_email` varchar(50) NOT NULL,
-  `user_name` varchar(50) NOT NULL,
-  `user_password` varchar(40) NOT NULL,
-  `user_datereg` date NOT NULL DEFAULT current_timestamp(),
-  `user_phone` varchar(12) NOT NULL,
-  `user_address` varchar(60) NOT NULL
+CREATE TABLE `tbl_orders` (
+  `order_id` int(5) NOT NULL,
+  `buyer_id` int(5) NOT NULL,
+  `seller_id` int(5) NOT NULL,
+  `order_total` decimal(5,2) NOT NULL,
+  `order_date` datetime(6) NOT NULL DEFAULT current_timestamp(6),
+  `order_status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_users`
+-- Dumping data for table `tbl_orders`
 --
 
-INSERT INTO `tbl_users` (`user_id`, `user_email`, `user_name`, `user_password`, `user_datereg`, `user_phone`, `user_address`) VALUES
-(1, 'test@email.com', 'HASYA AULIA', '872d7a48469281a7f1ed8ad27a157ed3203b415e', '2024-02-10', '01234567', 'UUM\nSINTOK\nKEDAH\nCHANGLUN');
+INSERT INTO `tbl_orders` (`order_id`, `buyer_id`, `seller_id`, `order_total`, `order_date`, `order_status`) VALUES
+(20, 1, 3, 450.00, '2024-02-10 20:11:52.658020', 'New'),
+(21, 1, 3, 400.00, '2024-02-10 21:54:42.783207', 'New'),
+(22, 1, 3, 250.00, '2024-02-10 22:03:11.989358', 'New');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tbl_users`
+-- Indexes for table `tbl_orders`
 --
-ALTER TABLE `tbl_users`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `user_email` (`user_email`);
+ALTER TABLE `tbl_orders`
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `tbl_users`
+-- AUTO_INCREMENT for table `tbl_orders`
 --
-ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `tbl_orders`
+  MODIFY `order_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
